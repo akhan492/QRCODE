@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- <form>
+      <label for="url-input">Enter URL:</label>
+      <input type="text" id="url-input" name="url" />
+      <button type="submit">Generate QR Code</button>
+    </form> -->
+    <div class="container">
+      <form>
+        <div class="mb-3">
+          <label class="form-label">Enter URL</label>
+          <input
+            type="url"
+            placeholder="https://"
+            class="form-control"
+            id="url-input"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <div id="qr-code-container"></div>
+    </div>
+    <script>
+      // JavaScript code to handle the form submission and display the QR code
+      const form = document.querySelector("form");
+      const urlInput = document.querySelector("#url-input");
+      const qrCodeContainer = document.querySelector("#qr-code-container");
+      //
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+         const url = encodeURIComponent(urlInput.value);
+        if (url) {
+          const response = await fetch(
+            `http://localhost:8000/qrcode?url=${url}`
+          );
+          const blob = await response.blob();
+          const imageUrl = URL.createObjectURL(blob);
+          qrCodeContainer.innerHTML = `<img src="${imageUrl}" alt="QR code" /> <a href='${response.url} download'><button type="button" class="btn btn-primary">Download QR code</button></a>
+          `;
+          urlInput.value = "";
+        } else {
+          prompt("please enter url");
+        }
+      });
+    </script>
+  </body>
+</html>
