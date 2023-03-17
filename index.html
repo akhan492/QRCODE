@@ -44,10 +44,10 @@
       //
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
-         const url = encodeURIComponent(urlInput.value);
+        const url = encodeURIComponent(urlInput.value);
         if (url) {
           const response = await fetch(
-            `http://localhost:8000/qrcode?url=${url}`
+            `https://qr-code-generator-ph14.onrender.com/qrcode?url=${url}`
           );
           const blob = await response.blob();
           const imageUrl = URL.createObjectURL(blob);
