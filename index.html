@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Code Generator</title>
     <link rel="stylesheet" href="style.css" />
     <link
@@ -13,6 +14,7 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
+      defer
     ></script>
   </head>
   <body>
@@ -22,19 +24,29 @@
       <button type="submit">Generate QR Code</button>
     </form> -->
     <div class="container">
-      <form>
-        <div class="mb-3">
-          <label class="form-label">Enter URL</label>
-          <input
-            type="url"
-            placeholder="https://"
-            class="form-control"
-            id="url-input"
-          />
+      <h1 class="text-center">QR Generator</h1>
+      <div class="row my-5">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <form class="d-flex flex-column align-items-center">
+            <div class="mb-3">
+              <label class="form-label">Enter URL</label>
+              <input
+                type="url"
+                placeholder="https://"
+                class="form-control"
+                id="url-input"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <div
+            id="qr-code-container"
+            class="d-flex flex-column align-items-center"
+          ></div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      <div id="qr-code-container"></div>
+        <div class="col-md-4"></div>
+      </div>
     </div>
     <script>
       // JavaScript code to handle the form submission and display the QR code
