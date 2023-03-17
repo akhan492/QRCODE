@@ -2,6 +2,7 @@ const express = require("express");
 const qr = require("qr-image");
 const app = express();
 const cors = require("cors");
+const PORT = process.env.PORT || 8000;
 app.use(cors()); // Enable CORS
 app.get("/qrcode", (req, res) => {
   const url = req.query.url;
@@ -12,6 +13,6 @@ app.get("/qrcode", (req, res) => {
   qr_svg.pipe(res);
 });
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
   console.log("QR code generator app listening on port 8000!");
 });
